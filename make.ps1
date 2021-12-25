@@ -14,6 +14,7 @@ catch [System.Management.Automation.CommandNotFoundException] {
 ## 利用準備
 scoop install git
 scoop install aria2
+scoop update
 scoop bucket add extras
 scoop bucket add versions
 ## パッケージのインストール
@@ -30,9 +31,9 @@ $SCOOP_PACKAGES = @(
 	"neovim"
 	"windows-terminal"
 )
+scoop update *
 scoop install $SCOOP_PACKAGES
 scoop cache rm *
-#>
 
 # Chocolatey
 ## インストール
@@ -42,5 +43,17 @@ try {
 catch [System.Management.Automation.CommandNotFoundException] {
   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
+#>
+
+## パッケージのインストール
+$CHOCO_PACKAGES = @(
+	"docker-desktop"
+	"adobereader"
+	"cica"
+	"cascadiacodepl"
+	"font-hackgen-nerd"
+)
+choco update
+choco install -y $CHOCO_PACKAGES
 
 pause
