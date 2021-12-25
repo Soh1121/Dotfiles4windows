@@ -12,7 +12,10 @@ catch [System.Management.Automation.CommandNotFoundException] {
 }
 
 scoop install git
-#>
 scoop install aria2
+#>
+
+scoop bucket add extras
+scoop bucket add versions
 
 pause
