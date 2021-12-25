@@ -3,6 +3,7 @@
 
 # Scoop
 ## インストール
+<#
 try {
   Get-Command -Name scoop -ErrorAction Stop
 }
@@ -11,5 +12,7 @@ catch [System.Management.Automation.CommandNotFoundException] {
 }
 
 scoop install git
+#>
+scoop install aria2
 
 pause
