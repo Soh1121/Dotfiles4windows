@@ -13,9 +13,24 @@ catch [System.Management.Automation.CommandNotFoundException] {
 
 scoop install git
 scoop install aria2
-#>
-
 scoop bucket add extras
 scoop bucket add versions
+#>
+
+$SCOOP_PACKAGES = @(
+	"googlechrome"
+	"vscode"
+	"slack"
+	"zoom"
+	"rapidee"
+	"licecap"
+	"openssh"
+	"sudo"
+	"tar"
+	"neovim"
+	"windows-terminal"
+)
+scoop install $SCOOP_PACKAGES
+scoop cache rm *
 
 pause
