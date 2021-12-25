@@ -9,4 +9,4 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 # 再起動
-Restart-Computer Force
+Restart-Computer -Force
