@@ -3,7 +3,7 @@
 
 # Scoop
 ## インストール
-<#
+
 try {
   Get-Command -Name scoop -ErrorAction Stop
 }
@@ -17,6 +17,7 @@ scoop install aria2
 scoop update
 scoop bucket add extras
 scoop bucket add versions
+
 ## パッケージのインストール
 $SCOOP_PACKAGES = @(
 	"googlechrome"
@@ -30,6 +31,7 @@ $SCOOP_PACKAGES = @(
 	"tar"
 	"neovim"
 	"windows-terminal"
+	"xmind8"
 )
 scoop update *
 scoop install $SCOOP_PACKAGES
@@ -43,7 +45,6 @@ try {
 catch [System.Management.Automation.CommandNotFoundException] {
   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
-#>
 
 ## パッケージのインストール
 $CHOCO_PACKAGES = @(
@@ -55,5 +56,3 @@ $CHOCO_PACKAGES = @(
 )
 choco update
 choco install -y $CHOCO_PACKAGES
-
-pause
