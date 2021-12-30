@@ -10,3 +10,6 @@ wsl --set-default-version 2
 Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile linux.appx -UseBasicParsing
 Add-AppxPackage -Path linux.appx
 rm linux.appx
+
+# 再起動
+Restart-Computer -Force

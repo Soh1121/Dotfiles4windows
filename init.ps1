@@ -1,5 +1,4 @@
 # DO NOT RUN ON ISE
-# Set-ExecutionPolicy -Scope Process Unrestricted
 
 # バーチャルホストの有効
 # Linux 用 Windows サブシステム
