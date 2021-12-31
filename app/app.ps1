@@ -1,6 +1,3 @@
-# DO NOT RUN ON ISE
-# Set-ExecutionPolicy -Scope Process Unrestricted
-
 # Scoop
 ## インストール
 
@@ -21,17 +18,18 @@ scoop bucket add versions
 ## パッケージのインストール
 $SCOOP_PACKAGES = @(
 	"googlechrome"
-	"vscode"
-	"slack"
-	"zoom"
-	"rapidee"
 	"licecap"
+	"neovim"
 	"openssh"
+	"rapidee"
+	"slack"
+	"sourcetree"
 	"sudo"
 	"tar"
-	"neovim"
+	"vscode"
 	"windows-terminal"
 	"xmind8"
+	"zoom"
 )
 scoop update *
 scoop install $SCOOP_PACKAGES
@@ -48,10 +46,9 @@ catch [System.Management.Automation.CommandNotFoundException] {
 
 ## パッケージのインストール
 $CHOCO_PACKAGES = @(
-	"docker-desktop"
 	"adobereader"
-	"cica"
 	"cascadiacodepl"
+	"cica"
 	"font-hackgen-nerd"
 )
 choco update
