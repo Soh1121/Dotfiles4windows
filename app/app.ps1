@@ -87,5 +87,3 @@ Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advan
 
 # Explorerの停止(すぐに再起動する)
 Stop-Process -Name Explorer -Force;
-
-exit
