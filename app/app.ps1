@@ -53,3 +53,31 @@ $CHOCO_PACKAGES = @(
 )
 choco update
 choco install -y $CHOCO_PACKAGES
+
+$newPath = @(
+	"$env:USERPROFILE\scoop\shims"
+	"$env:USERPROFILE\scoop\apps\git\current\user\bin"
+	"$env:USERPROFILE\scoop\apps\git\current\mingw64\bin"
+	"$env:USERPROFILE\scoop\apps\git\current\mingw64\libexec\git-core"
+	"$env:USERPROFILE\scoop\apps\googlechrome\current"
+	"$env:USERPROFILE\scoop\apps\licecap\current"
+	"$env:USERPROFILE\scoop\apps\neovim\current\bin"
+	"$env:USERPROFILE\scoop\apps\openssh\current"
+	"$env:USERPROFILE\scoop\apps\rapidee\current"
+	"$env:USERPROFILE\scoop\apps\slack\current"
+	"$env:USERPROFILE\scoop\apps\sudo\current"
+	"$env:USERPROFILE\scoop\apps\tar\current\bin"
+	"$env:USERPROFILE\scoop\apps\vscode\current\bin"
+	"$env:USERPROFILE\scoop\apps\windows-terminal\current"
+	"$env:USERPROFILE\scoop\apps\xmind8\current"
+	"$env:USERPROFILE\scoop\apps\zoom\current"
+) -join ";"
+
+$oldPath = [System.Environment]::GetEnvironmentVariable("PATH", "User")
+if ($oldPath -ne $newPath) {
+	[System.Environment]::SetEnvironmentVariable("_PATH_" + (Get-Date -UFormat "%Y%m%d"), $oldPath, "User")
+}
+[System.Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
+$ErrorActionPreference = "Stop"
+
+exit

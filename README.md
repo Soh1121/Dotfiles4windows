@@ -4,4 +4,11 @@ Windows用のセットアップファイル
 
 ## Installation
 
-PowerShellを開いて実行
+ダウンロードして、ユーザープロファイル下に保存。
+PowerShellを開いて下記を実行。
+
+```
+> cd $env:USERPROFILE¥Dotfiles4Windows
+> Set-ExecutionPolicy -Scope Process Unrestricted
+> ./make.ps
+```

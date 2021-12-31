@@ -9,5 +9,8 @@ wsl --set-default-version 2
 Add-AppxPackage -Path linux.appx
 rm linux.appx
 
+# 設定データのシンボリックリンクを作成
+New-Item -Value .\wsl2\.wslconfig -Path $env:USERPROFILE -Name .wslconfig
+
 # 再起動
 Restart-Computer -Force
