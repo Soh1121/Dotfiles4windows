@@ -10,5 +10,5 @@ Windows用のセットアップファイル
 ```
 > cd $env:USERPROFILE\Dotfiles4windows
 > Set-ExecutionPolicy -Scope Process Unrestricted
-> .\make.ps
+> .\make.ps1
 ```
