@@ -1,3 +1,45 @@
+# スタートアップにショートカットを作成する関数
+function New-StartupApp{
+    param(
+        [switch]$CurrentUser,
+
+        [parameter(mandatory)]
+        [string]$LinkName,
+
+        [parameter(mandatory)]
+        [string]$ExeName,
+
+        [parameter(mandatory)]
+        [string]$IconName
+    )
+
+    # スタートアップ フォルダーを指定
+    $Reg = "{0}:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
+    if($CurrentUser -eq $true){
+        $startupPath = $(Get-ItemProperty ($Reg -f "HKCU")).startup
+    }
+    else{
+        $StartupPath = $(Get-ItemProperty ($Reg -f "HKLM")).'common startup'
+    }
+
+    # ショートカット先をチェック
+    $ShortCutPath = "{0}\$linkName.lnk" -f $StartupPath
+
+    if((Test-Path -Path $ShortCutPath) -eq $true){
+        Write-Host "$LinkName.lnk Existed." -ForegroundColor Yellow
+        return
+    }
+
+    # ショートカットを作る
+    $WsShell = New-Object -ComObject WScript.Shell
+    $ShortCut = $WsShell.CreateShortcut($shortCutPath)
+    $ShortCut.TargetPath = $exeName
+    $ShortCut.IconLocation = $iconName
+    $ShortCut.Save()
+
+    Write-Host "$linkName.lnk Created." -ForegroundColor Cyan
+}
+
 # Scoop
 ## インストール
 
@@ -26,6 +68,7 @@ $SCOOP_PACKAGES = @(
 	"sourcetree"
 	"sudo"
 	"tar"
+	"vcxsrv"
 	"vscode"
 	"windows-terminal"
 	"xmind8"
@@ -54,6 +97,7 @@ $CHOCO_PACKAGES = @(
 choco update
 choco install -y $CHOCO_PACKAGES
 
+# パスの登録
 $newPath = @(
 	"$env:USERPROFILE\scoop\shims"
 	"$env:USERPROFILE\scoop\apps\git\current\user\bin"
@@ -79,5 +123,12 @@ if ($oldPath -ne $newPath) {
 }
 [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
 $ErrorActionPreference = "Stop"
+
+# スタートアップへのソートカットの作成
+New-StartupApp `
+    -CurrentUser `
+    -LinkName "XLaunch" `
+    -ExeName "$env:USERPROFILE\scoop\app\vcxsrv\current\xlaunch.exe -run .\wsl2\config.xlaunch" `
+    -IconName "$env:USERPROFILE\scoop\app\vcxsrv\current\xlaunch.exe"
 
 exit
