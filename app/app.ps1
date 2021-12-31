@@ -82,4 +82,10 @@ if ($oldPath -ne $newPath) {
 [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "User")
 $ErrorActionPreference = "Stop"
 
+# ファイルの拡張子を表示する
+Set-ItemProperty "HKCU:¥Software¥Microsoft¥Windows¥CurrentVersion¥Explorer¥Advanced" -name "HideFileExt" -value "0";
+
+# Explorerの停止(すぐに再起動する)
+Stop-Process -Name Explorer -Force;
+
 exit
